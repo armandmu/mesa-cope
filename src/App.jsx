@@ -5,7 +5,7 @@ const db=URL&&KEY?createClient(URL,KEY):null;
 const ids=Array.from({length:86},(_,i)=>String(i+1).padStart(3,'0'));
 const blank=()=>({cards:[],mode:'open',limit:0,locked:false,order:ids});
 const img=id=>import.meta.env.BASE_URL+'cards/'+id+'.webp';
-function Picture({id,up=true}){const[bad,setBad]=useState(false);useEffect(()=>setBad(false),[id]);return up?(bad?<span className="cardmissing">Carta {id}<br/>Imagen pendiente de licencia</span>:<img src={img(id)} alt={'Carta '+id} draggable="false" onError={()=>setBad(true)}/>):<span className="back">COPE</span>}
+function Picture({id,up=true}){const[bad,setBad]=useState(false);useEffect(()=>setBad(false),[id]);return up?(bad?<span className="cardmissing">Carta {id}<br/>Imagen no disponible</span>:<img src={img(id)} alt={'Carta '+id} draggable="false" onError={()=>setBad(true)}/>):<span className="back">COPE</span>}
 function App(){
 const[role,R]=useState(''),[session,S]=useState(null),[board,B]=useState(blank),[email,E]=useState(''),[password,P]=useState(''),[code,C]=useState(new URLSearchParams(location.search).get('code')||'');
 const[error,ERR]=useState(''),[busy,BUSY]=useState(false),[online,ONLINE]=useState(false),[selected,SEL]=useState(null),[zoom,Z]=useState(null);const state=useRef(board),drag=useRef(null),writing=useRef(false);
