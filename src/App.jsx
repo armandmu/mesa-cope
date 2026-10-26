@@ -1,7 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react';
 import{createClient}from'@supabase/supabase-js';
-const URL=import.meta.env.VITE_SUPABASE_URL,KEY=import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-const db=URL&&KEY?createClient(URL,KEY):null;
+const SUPABASE_URL=import.meta.env.VITE_SUPABASE_URL,KEY=import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const db=SUPABASE_URL&&KEY?createClient(SUPABASE_URL,KEY):null;
 const ids=Array.from({length:86},(_,i)=>String(i+1).padStart(3,'0'));
 const blank=()=>({cards:[],mode:'open',limit:0,locked:false,order:ids});
 const img=id=>import.meta.env.BASE_URL+'cards/'+id+'.webp';
